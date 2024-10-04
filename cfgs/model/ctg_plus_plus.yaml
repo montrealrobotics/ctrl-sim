@@ -1,0 +1,17 @@
+defaults:
+- base
+
+diffusion_type: states_actions
+n_diffusion_steps: 100
+action_weight: 10
+loss_discount: 1
+predict_epsilon: False
+returns_condition: True
+condition_dropout: 0.25
+condition_guidance_w: 1.2
+test_ret: 0.9
+num_transformer_encoder_layers: 2
+use_rtg: False
+predict_rtg: False
+ctg_plus_plus: True
+n_eval_diffusion_step: 50

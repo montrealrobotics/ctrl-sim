@@ -1,0 +1,10 @@
+defaults:
+- base
+
+run_name: ctg_plus_plus
+model_path: /home/checkpoints/${eval.policy.run_name}/model.ckpt
+sampling_frequency: 2 # 10 Hz
+use_guidance: False
+n_guidance_steps: 2
+guide_scale: 0.1
+model: ctg_plus_plus

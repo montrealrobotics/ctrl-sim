@@ -1,0 +1,13 @@
+defaults:
+- base
+
+run_name: dt
+model_path: /home/checkpoints/${eval.policy.run_name}/model.ckpt
+action_temperature: 1.0
+nucleus_sampling: False
+nucleus_threshold: 0.8
+real_time_rewards: True
+max_return: True
+use_rtgs: True
+discretize_rtgs: False
+model: dt

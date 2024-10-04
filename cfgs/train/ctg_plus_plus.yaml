@@ -1,0 +1,8 @@
+defaults:
+- base
+
+lr: 2e-4
+limit_val_batches: 0.1
+loss_type: l2
+gradient_accumulate_every: 2
+ema_decay: 0.995

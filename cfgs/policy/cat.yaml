@@ -1,0 +1,4 @@
+defaults:
+- ctrl_sim
+
+model: cat

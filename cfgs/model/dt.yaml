@@ -1,0 +1,6 @@
+defaults:
+- ctrl_sim
+
+decision_transformer: True
+predict_future_states: False
+predict_rtg: False

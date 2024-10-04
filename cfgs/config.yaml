@@ -1,0 +1,94 @@
+dataset_root: /scratch
+project_root: /home/ctrl-sim
+nocturne_waymo_data_folder: ${dataset_root}/nocturne_waymo
+nocturne_waymo_train_folder: ${nocturne_waymo_data_folder}/formatted_json_v2_no_tl_train
+nocturne_waymo_val_folder: ${nocturne_waymo_data_folder}/formatted_json_v2_no_tl_valid
+nocturne_waymo_val_interactive_folder: ${nocturne_waymo_data_folder}/formatted_json_v2_no_tl_valid_interactive
+
+defaults:
+  - dataset/waymo: ctrl_sim
+  - train: ctrl_sim
+  - datamodule: ctrl_sim
+  - model: ctrl_sim
+  - eval: base
+  - eval_planner_adversary: base
+
+# parameters for generating offline rl dataset
+offline_rl:
+  output_data_folder_train: ${dataset_root}/offline_rl/train
+  output_data_folder_val: ${dataset_root}/offline_rl/val
+  output_data_folder_val_interactive: ${dataset_root}/offline_rl/val_interactive
+  output_data_folder_test: ${dataset_root}/offline_rl/test
+  mode: train
+  chunk_idx: 0
+  chunk_size: 25000
+
+cat:
+  md_scenarios: ${dataset_root}/md_scenarios
+  valid_md_scenarios: ${dataset_root}/valid_md_scenarios
+  dict_path: ${dataset_root}/eval_planner_dict.pkl
+  num_files_to_collect: 5000
+  start_idx: 1006
+  output_dir: ${dataset_root}/cat_offline_rl_data
+
+# parameters for preprocessing the offline rl dataset for efficient CtRL-Sim training
+preprocess_rl_waymo:
+  mode: train
+  chunk_idx: 0
+  chunk_size: 25000
+
+# parameters relevant to the nocturne simulator
+nocturne:
+  collision_fix: True
+  
+  steps: 90
+  dt: 0.1
+  history_steps: 10
+
+  # parameters fed into nocturne Simulation object
+  scenario:
+    # initial timestep of the scenario (which ranges from timesteps 0 to 90)
+    start_time: 0
+    # if set to True, non-vehicle objects (eg. cyclists, pedestrians...) will be spawned
+    allow_non_vehicles: False
+    # for an object to be included into moving_objects
+    moving_threshold: 0.2  # its goal must be at least this distance from its initial position
+    speed_threshold: 0.05  # its speed must be superior to this value at some point
+    # maximum number of each objects visible in the object state
+    # if there are more objects, the closest ones are prioritized
+    # if there are less objects, the features vector is padded with zeros
+    max_visible_objects: 16
+    max_visible_road_points: 1000
+    max_visible_traffic_lights: 20
+    max_visible_stop_signs: 4
+    # from the set of road points that comprise each polyline, we take
+    # every n-th one of these
+    sample_every_n: 1
+    # if true we add all the road-edges (the edges you can collide with)
+    # to the visible road points first and only add the other points
+    # (road lines, lane lines) etc. if we have remaining states after
+    road_edge_first: False
+
+  rew_cfg:
+    shared_reward: False # agents get the collective reward instead of individual rewards
+    goal_tolerance: 0.5
+    reward_scaling: 1.0 # rescale all the rewards by this value. This can help w/ some learning algorithms
+    collision_penalty: 0
+    shaped_goal_distance_scaling: 0.2
+    shaped_goal_distance: True
+    goal_distance_penalty: False # if shaped_goal_distance is true, then when this is True the goal distance 
+                                # is a penalty for being far from 
+                                # goal instead of a reward for being close
+    # goal is only achieved if you're within this tolerance on distance from goal
+    position_target: True
+    position_target_tolerance: 1.0
+    # goal is only achieved if you're within this tolerance on final agent speed at goal position
+    speed_target: True
+    speed_target_tolerance: 1.0
+    # goal is only achieved if you're within this tolerance on final agent heading at goal position
+    heading_target: True
+    heading_target_tolerance: 0.3
+
+hydra:
+  run:
+    dir: ${project_root}/slurm_logs/${now:%Y.%m.%d}/${now:%H.%M.%S}/${hydra.job.override_dirname}

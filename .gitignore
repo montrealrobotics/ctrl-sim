@@ -1,0 +1,4 @@
+build/
+nocturne.egg-info/
+*.so
+*.out

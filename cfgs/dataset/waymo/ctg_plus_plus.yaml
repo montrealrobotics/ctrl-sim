@@ -1,0 +1,10 @@
+defaults:
+  - base
+
+input_horizon: 10
+action_dim: 2
+future_relative_encoding: False
+state_normalizer: 
+  pos_div: 100.0
+  vel_div: 40.0
+

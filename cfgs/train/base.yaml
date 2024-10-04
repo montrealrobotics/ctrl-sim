@@ -1,0 +1,18 @@
+seed: 0
+accelerator: auto
+devices: 4 # set to 4 when multi-gpu training
+max_steps: 200000
+warmup_steps: 500
+lr: 5e-4
+weight_decay: 1e-4
+check_val_every_n_epoch: 1
+precision: 32-true # bf16-mixed for bfloat16 mixed precision or 32-true for regular. bf16-mixed is unstable but 2x faster
+limit_train_batches: 1.0
+limit_val_batches: 1.0
+gradient_clip_val: 10.0
+run_name: test
+save_dir: /home/checkpoints
+track: False
+wandb_project: decepticons
+wandb_entity: swish
+finetuning: False

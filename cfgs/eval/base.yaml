@@ -1,0 +1,17 @@
+# TODO: get the right syntax here
+defaults:
+  - /policy@policy: ctrl_sim
+
+movie_path: ${project_root}/movie_frames
+visualize: False
+history_steps: 10
+interesting_traj_len_threshold: 60
+interesting_goal_dist_threshold: 10
+interesting_timestep_diff_threshold: 20
+multi_agent_eval_threshold: 8
+num_files_to_evaluate: 1000
+# one_agent, two_agent, multi_agent
+eval_mode: one_agent
+verbose: True
+seed: 0
+partitions: 1

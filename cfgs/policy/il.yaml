@@ -1,0 +1,9 @@
+defaults:
+- base
+
+run_name: il
+model_path: /home/checkpoints/${eval.policy.run_name}/model.ckpt
+action_temperature: 1.0
+nucleus_sampling: False
+nucleus_threshold: 0.8
+model: il

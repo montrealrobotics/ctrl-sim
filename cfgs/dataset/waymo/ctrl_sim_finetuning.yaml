@@ -1,0 +1,6 @@
+defaults:
+  - ctrl_sim
+
+replay_ratio: 0.5
+center_on_focal_agent: True
+supervise_focal_agent: True

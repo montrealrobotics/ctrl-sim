@@ -1,0 +1,9 @@
+defaults:
+- base
+
+num_transformer_encoder_layers: 2
+num_decoder_layers: 4
+predict_future_states: True
+local_frame_predictions: False
+loss_action_coef: 1.
+encode_initial_state: True

@@ -1,0 +1,10 @@
+defaults:
+  - /policy@adversary: ctrl_sim_adversary
+  - /policy@planner: ctrl_sim_planner
+
+history_steps: 10 
+verbose: True 
+seed: 0
+visualize: False
+visualization_data_path: ${dataset_root}/viz_data_files
+num_files_to_evaluate: 1000

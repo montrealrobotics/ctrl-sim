@@ -1,0 +1,6 @@
+defaults:
+- ctrl_sim
+
+trajeglish: True 
+predict_rtg: False 
+predict_future_states: False

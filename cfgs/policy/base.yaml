@@ -1,0 +1,7 @@
+use_rtg: False
+predict_rtgs: False
+discretize_rtgs: True
+real_time_rewards: False
+privileged_return: False
+max_return: False
+min_return: False

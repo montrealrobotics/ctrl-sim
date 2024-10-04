@@ -1,0 +1,53 @@
+dataset_path: ${dataset_root}/offline_rl
+preprocess: True
+preprocess_dir: ${dataset_root}/preprocess
+train_context_length: 32 # following trajeglish (64 for larger model)
+num_agent_types: 5 # in practice, we only simulate vehicles
+num_road_types: 8
+map_attr: 2
+k_attr: 7
+agent_dist_threshold: 60.0 # following trajeglish
+map_dist_threshold: 100.0 # following trajeglish
+max_timestep: 90
+parked_car_velocity_threshold: 0.05
+max_accel: 10.0
+min_accel: -10.0
+max_steer: 0.7
+min_steer: -0.7
+
+max_veh_veh_distance: 15.0
+dist_to_road_edge_scaling_factor: 15.0
+veh_veh_collision_rew_multiplier: 10.0
+veh_edge_collision_rew_multiplier: 10.0
+pos_goal_shaped_min: 0
+pos_goal_shaped_max: 0.2
+pos_target_achieved_rew_multiplier: 10.0
+moving_threshold: 0.05
+
+min_rtg_pos: 0
+max_rtg_pos: 10
+min_rtg_yaw: 0
+max_rtg_yaw: 110
+min_rtg_vel: 0
+max_rtg_vel: 110
+min_rtg_veh: -10
+max_rtg_veh: 90
+min_rtg_road: -10
+max_rtg_road: 90
+
+max_num_agents: 24 # following trajeglish
+max_num_road_polylines: 200 # trajeglish uses 96
+max_num_road_pts_per_polyline: 100
+accel_discretization: 20
+steer_discretization: 50 
+rtg_discretization: 350
+
+preprocess_real_data: False
+preprocess_simulated_data: False
+simulated_dataset: ${dataset_root}/cat_offline_rl_data
+simulated_dataset_preprocessed_dir: ${dataset_root}/preprocessed_cat
+
+goal_dim: 5
+remove_shaped_goal: True
+remove_shaped_veh_reward: False
+remove_shaped_edge_reward: False

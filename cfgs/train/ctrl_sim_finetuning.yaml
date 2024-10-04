@@ -1,0 +1,8 @@
+defaults:
+- ctrl_sim
+
+max_steps: 1440
+warmup_steps: 250
+lr: 5e-4
+finetuning: True
+limit_val_batches: 0.01

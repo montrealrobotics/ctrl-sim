@@ -1,0 +1,8 @@
+defaults:
+- ctrl_sim
+
+run_name: ctrl_sim
+model_path: /home/checkpoints/${eval.policy.run_name}/model.ckpt
+goal_tilt: 10
+veh_veh_tilt: 10
+veh_edge_tilt: 10
